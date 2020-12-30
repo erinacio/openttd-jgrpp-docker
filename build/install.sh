@@ -1,6 +1,6 @@
 #!/bin/sh
 set -ex
-jgrpp_version=0.39.0
+jgrpp_version=0.39.1
 opengfx_version=0.6.0
 cd /build/
 apt-get update
@@ -22,7 +22,7 @@ apt-get install -y \
     libpng-dev
 wget https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 wget https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-echo "2bbbea48bb1c2fb7eae07eb98b4d49654b4b022b491f83ec1df9b6f0803bef54 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+echo "f8562c7aa96042b91ce5f057c47c9c4cb1b57687db1824d20d8503cada692566 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
 echo "d419c0f5f22131de15f66ebefde464df3b34eb10e0645fe218c59cbc26c20774 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 tar -xvf jgrpp-$jgrpp_version.tar.gz
 cd OpenTTD-patches-jgrpp-$jgrpp_version/bin
