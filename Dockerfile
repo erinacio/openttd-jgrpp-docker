@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 COPY build /build/
 RUN ["/bin/sh", "/build/install.sh"]
 USER openttd:openttd
