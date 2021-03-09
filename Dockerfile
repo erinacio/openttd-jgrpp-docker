@@ -1,5 +1,5 @@
 FROM debian:buster as builder
-ENV jgrpp_version=0.40.2
+ENV jgrpp_version=0.40.4
 ENV opengfx_version=0.6.0
 WORKDIR /tmp
 RUN apt-get update
@@ -22,7 +22,7 @@ RUN apt-get install -y \
         libpng-dev
 RUN curl -fLo jgrpp-$jgrpp_version.tar.gz https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-RUN echo "9065cd9ba1714f95774e09a3ea19769bdc10cb5597e77cf2ba45123195fd92df *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+RUN echo "c468d15d93a90f4148ca261610e7d7ee7a74142a888eccaebde0676c4db46bb8 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
 RUN echo "d419c0f5f22131de15f66ebefde464df3b34eb10e0645fe218c59cbc26c20774 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvf jgrpp-$jgrpp_version.tar.gz
 RUN mkdir /tmp/build
@@ -52,7 +52,7 @@ RUN apt-get update \
            libpng16-16 \
     && rm -rvf /var/lib/apt/lists/*
 RUN useradd -ms /bin/sh -d /data openttd
-COPY --from=builder /usr/bin/openttd /usr/bin/openttd
+COPY --from=builder /usr/games/openttd /usr/games/openttd
 COPY --from=builder /usr/share/games/openttd/ /usr/share/games/openttd/
 COPY --from=builder /usr/share/doc/openttd/ /usr/share/doc/openttd/
 COPY --from=builder /usr/share/man/man6/openttd.6.gz /usr/share/man/man6/openttd.6.gz
@@ -60,4 +60,4 @@ USER openttd:openttd
 WORKDIR /data
 EXPOSE 3979
 EXPOSE 3979/udp
-ENTRYPOINT ["/usr/bin/openttd"]
+ENTRYPOINT ["/usr/games/openttd"]
