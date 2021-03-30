@@ -1,6 +1,4 @@
 FROM debian:buster as builder
-ENV jgrpp_version=0.40.4
-ENV opengfx_version=0.6.0
 WORKDIR /tmp
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -20,9 +18,11 @@ RUN apt-get install -y \
         liblzo2-dev \
         libpng16-16 \
         libpng-dev
+ENV jgrpp_version=0.40.5
+ENV opengfx_version=0.6.0
 RUN curl -fLo jgrpp-$jgrpp_version.tar.gz https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-RUN echo "c468d15d93a90f4148ca261610e7d7ee7a74142a888eccaebde0676c4db46bb8 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+RUN echo "0c815639bd21d6e8bb9d63c58332cedf823be736c8ebc60de286f79224517fdc *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
 RUN echo "d419c0f5f22131de15f66ebefde464df3b34eb10e0645fe218c59cbc26c20774 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvf jgrpp-$jgrpp_version.tar.gz
 RUN mkdir /tmp/build
