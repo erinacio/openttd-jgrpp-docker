@@ -12,7 +12,7 @@ Server must have a non-empty "client name", use `name <server_name>` like `name 
 
 If server's client name is empty, clients will reject to join the server without any explicit indication explaining why.
 
-### Dedicated Server Verbose Log
+#### Dedicated Server Verbose Log
 
 JGRPP changed debug level for `net` to 4 for dedicated servers, which will generate a lot of verbose logs like:
 
