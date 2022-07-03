@@ -1,4 +1,4 @@
-FROM debian:buster as builder
+FROM debian:bullseye as builder
 WORKDIR /tmp
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -19,12 +19,12 @@ RUN apt-get install -y \
     libzstd-dev \
     libpng16-16 \
     libpng-dev
-ENV jgrpp_version=0.42.2
-ENV opengfx_version=0.6.1
+ENV jgrpp_version=0.47.3
+ENV opengfx_version=7.1
 RUN curl -fLo jgrpp-$jgrpp_version.tar.gz https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-RUN echo "f08220e4a417a8e262f4af4d5a7613d04defb7417fec880fc6e7dfa60d6747d6 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
-RUN echo "c694a112cd508d9c8fdad1b92bde05e7c48b14d66bad0c3999e443367437e37e *opengfx-$opengfx_version-all.zip" | sha256sum -c
+RUN echo "020619f6c713e4da2390a055b3ab5cee8ae868a4de1edf8024bb127a18cb3edc *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+RUN echo "928fcf34efd0719a3560cbab6821d71ce686b6315e8825360fba87a7a94d7846 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvzf jgrpp-$jgrpp_version.tar.gz
 RUN mkdir /tmp/build
 
@@ -46,7 +46,7 @@ WORKDIR /tmp
 RUN unzip opengfx-$opengfx_version-all.zip
 RUN mv opengfx-$opengfx_version.tar /usr/share/openttd/baseset/opengfx-$opengfx_version.tar
 
-FROM debian:buster
+FROM debian:bullseye
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
