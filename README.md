@@ -1,7 +1,7 @@
 # openttd-jgrpp-docker
 
 ```
-docker run --rm -it -v /data/openttd:/data:rw -p 3979:3979 -p 3979:3979/udp erinacio/openttd-jgrpp:${JGRPP_VERSION} -D -d net=2
+docker run --rm -it -v /data/openttd:/data:rw -p 3979:3979 -p 3979:3979/udp ghcr.io/erinacio/openttd-jgrpp:${JGRPP_VERSION} -D -d net=2
 ```
 
 ### Changes from v0.41.2
