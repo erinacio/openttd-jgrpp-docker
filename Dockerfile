@@ -19,11 +19,11 @@ RUN apt-get install -y \
     libzstd-dev \
     libpng16-16 \
     libpng-dev
-ENV jgrpp_version=0.63.2
+ENV jgrpp_version=0.63.3
 ENV opengfx_version=7.1
 RUN curl -fLo jgrpp-$jgrpp_version.tar.gz https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-RUN echo "45e1317ac7cb527c4a051e5fa28b83ea3c658e6b01aacfc3fadf22e4a513788d *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+RUN echo "93ae759eefc4bf3844244bdf0c381c5d8c5fde64c2305eb1243283a71882ab72 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
 RUN echo "928fcf34efd0719a3560cbab6821d71ce686b6315e8825360fba87a7a94d7846 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvzf jgrpp-$jgrpp_version.tar.gz
 RUN mkdir /tmp/build
@@ -67,5 +67,6 @@ EXPOSE 3979
 EXPOSE 3979/udp
 WORKDIR /data
 ENV XDG_DATA_HOME=/data
+ENV XDG_CONFIG_HOME=/data
 VOLUME ["/data"]
 ENTRYPOINT ["/usr/bin/openttd"]
