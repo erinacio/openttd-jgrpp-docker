@@ -26,6 +26,8 @@ RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-r
 RUN echo "c8073b511a2dbb0eded17227ff2e3cbde94d0aba72011fd6aabcf714f0f91f29 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
 RUN echo "928fcf34efd0719a3560cbab6821d71ce686b6315e8825360fba87a7a94d7846 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvzf jgrpp-$jgrpp_version.tar.gz
+RUN curl -fsSL https://github.com/JGRennison/OpenTTD-patches/commit/ee797c85c92f645da0c7666662cd6b2793e9f25c.patch \
+    | patch -d OpenTTD-patches-jgrpp-$jgrpp_version -Np1
 RUN mkdir /tmp/build
 
 WORKDIR /tmp/build
