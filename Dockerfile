@@ -28,6 +28,8 @@ RUN echo "928fcf34efd0719a3560cbab6821d71ce686b6315e8825360fba87a7a94d7846 *open
 RUN tar -xvzf jgrpp-$jgrpp_version.tar.gz
 RUN curl -fsSL https://github.com/JGRennison/OpenTTD-patches/commit/ee797c85c92f645da0c7666662cd6b2793e9f25c.patch \
     | patch -d OpenTTD-patches-jgrpp-$jgrpp_version -Np1
+COPY disable-modified-check.patch /tmp/disable-modified-check.patch
+RUN patch -d OpenTTD-patches-jgrpp-$jgrpp_version -Np1 -i /tmp/disable-modified-check.patch
 RUN mkdir /tmp/build
 
 WORKDIR /tmp/build
