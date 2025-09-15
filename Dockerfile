@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:bookworm as builder
+FROM docker.io/library/debian:trixie as builder
 WORKDIR /tmp
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -19,11 +19,11 @@ RUN apt-get install -y \
     libzstd-dev \
     libpng16-16 \
     libpng-dev
-ENV jgrpp_version=0.65.4
+ENV jgrpp_version=0.66.1
 ENV opengfx_version=7.1
 RUN curl -fLo jgrpp-$jgrpp_version.tar.gz https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-RUN echo "04598170c14bb404674efde16130a272283f1ff5b2afc430fb1f9921b0583c35 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+RUN echo "23876701f1a4cc22750ea2b0b7f7480da2d3c310937e3b53c7afdeb5f9f4cbe9 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
 RUN echo "928fcf34efd0719a3560cbab6821d71ce686b6315e8825360fba87a7a94d7846 *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvzf jgrpp-$jgrpp_version.tar.gz
 RUN mkdir /tmp/build
@@ -46,7 +46,7 @@ WORKDIR /tmp
 RUN unzip opengfx-$opengfx_version-all.zip
 RUN mv opengfx-$opengfx_version.tar /usr/share/openttd/baseset/opengfx-$opengfx_version.tar
 
-FROM docker.io/library/debian:bookworm
+FROM docker.io/library/debian:trixie
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
