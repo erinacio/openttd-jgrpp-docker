@@ -19,12 +19,12 @@ RUN apt-get install -y \
     libzstd-dev \
     libpng16-16 \
     libpng-dev
-ENV jgrpp_version=0.67.0
-ENV opengfx_version=7.1
+ENV jgrpp_version=0.69.2
+ENV opengfx_version=8.0
 RUN curl -fLo jgrpp-$jgrpp_version.tar.gz https://github.com/JGRennison/OpenTTD-patches/archive/jgrpp-$jgrpp_version.tar.gz
 RUN curl -fLo opengfx-$opengfx_version-all.zip https://cdn.openttd.org/opengfx-releases/$opengfx_version/opengfx-$opengfx_version-all.zip
-RUN echo "68ed650a781f66315b40b8fb3f0b22fc29a650be8b86e99da398746f8f916b80 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
-RUN echo "928fcf34efd0719a3560cbab6821d71ce686b6315e8825360fba87a7a94d7846 *opengfx-$opengfx_version-all.zip" | sha256sum -c
+RUN echo "438e5effb2b3c2f9f6accdaeec4d71f6036352b6f9aa177c5b9b23ef25d28a54 *jgrpp-$jgrpp_version.tar.gz" | sha256sum -c
+RUN echo "43a0c1dabf39cb865394f3a6cc36d4da5c10ecfaaf55652043104806810903be *opengfx-$opengfx_version-all.zip" | sha256sum -c
 RUN tar -xvzf jgrpp-$jgrpp_version.tar.gz
 RUN mkdir /tmp/build
 
